@@ -27,20 +27,20 @@ def get_config() -> config_dict.ConfigDict:
   # Attention-based 5s model.
   config = config_dict.ConfigDict()
 
-  config.output_dir = ''
-  config.source_file_patterns = []
-  model_checkpoint_path = ''
+  config.output_dir = '/mnt/c/Users/jonat/OneDrive/CarlsonAI/BirdClassifier/output'
+  config.source_file_patterns = ['/mnt/c/Users/jonat/OneDrive/CarlsonAI/BirdClassifier/data/own_test_data/*.wav']
+  model_checkpoint_path = '/mnt/c/Users/jonat/OneDrive/CarlsonAI/BirdClassifier/Models/bird-vocalization-classifier_4'
 
-  config.num_shards_per_file = 120
-  config.shard_len_s = 60
+  config.num_shards_per_file = 1 #parallelisation, increase for speed
+  config.shard_len_s = 180
   # Number of workers when using the Beam DirectRunner on a single machine.
   config.num_direct_workers = 8
 
   config.embed_fn_config = {
       'write_embeddings': True,
-      'write_logits': False,
-      'write_separated_audio': False,
-      'write_raw_audio': False,
+      'write_logits': True,
+      'write_separated_audio': True,
+      'write_raw_audio': True,
       'file_id_depth': 1,
       'model_key': 'taxonomy_model_tf',
       'model_config': {
